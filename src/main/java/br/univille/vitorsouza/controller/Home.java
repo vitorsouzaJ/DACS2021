@@ -24,7 +24,7 @@ public class Home{
 
         HashMap<String,String> dados = new HashMap<>();
         dados.put("tempo", sdf.format(dataAgora));
-        dados.put("nomeapp","App Java lindo!!!");
+        dados.put("nomeapp","Relogio de algum lugar do mundo");
 
         return new ModelAndView("home/index", dados);
         //return new ModelAndView("home/index", "tempo", sdf.format(dataAgora));
