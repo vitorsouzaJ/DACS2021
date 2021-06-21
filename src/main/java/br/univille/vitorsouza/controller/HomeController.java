@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/")
-public class Home{
+public class HomeController{
 
    
     @GetMapping
