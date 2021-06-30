@@ -42,6 +42,11 @@ public class ProdutoController {
         */
         return new  ModelAndView("produto/index","listaProdutos", listaProduto);
 
-    }
-    
+          }
+
+          @GetMapping("/novo")
+          public ModelAndView novo(){
+              return new ModelAndView("produto/form");
+          }
+  
 }
