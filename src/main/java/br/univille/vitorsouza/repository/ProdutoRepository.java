@@ -8,6 +8,8 @@ import br.univille.vitorsouza.model.Produto;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto,Long> {
 
+    
+
 
     
 }

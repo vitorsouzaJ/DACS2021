@@ -11,7 +11,7 @@
 
             <a th:href="@{/produto/novo}" class="btn btn-primary"> NOVO <a>
 
-            <table class="table">
+            <table class="table" id="produtos">
                 <thead>
                     <tr>
                         <th>Descrição</th>
@@ -26,20 +26,42 @@
 
 
                 <tbody>
+
                     <tr th:each=" umproduto : ${listaProdutos}">
                         <td th:text ="${umproduto.descricao}" > </td>
                         <td th:text ="${umproduto.preco}"> </td>
                         <td th:text ="${umproduto.dataRegistro}"> </td>
                      <!--  <td th:text ="${umproduto.categoria.nome}"> </td>  -->
-                        <td><a th:href="@{'/produto/alterar/'+${umproduto.id}}" class="btn btn-success">Alterar</a></td>
+                        <td>
+
+                            <a th:href="@{'/produto/alterar/'+${umproduto.id}}" class="btn btn-success">Alterar</a>
+                            <button class="btn btn-danger js-delete"
+                                    th:data-id="${umproduto.id}">Excluir</button>
+                        </td>
 
                     </tr>
-                </tbody>
+                    
+                </tbody>    
 
             </table>
 
 
         </div>
         <div th:include="layout :: footer" id="footer">(footer)</div>
+
+        <script type="text/javascript" >
+
+            $(document).ready(function(){
+               
+                $("#produtos").on("click",".js-delete",function(){
+                    bootbox.confirm("eu nao acredito nisso",function(){
+
+                    });
+
+                });
+            });
+
+        </script>
+
     </body>
 </html> 
