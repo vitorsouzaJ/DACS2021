@@ -10,5 +10,6 @@ import br.univille.vitorsouza.model.Produto;
 public interface ProdutoService {
     public List<Produto> getAllProduto();
     public Produto save(Produto produto);
+    public void delete(Produto produto);
     
 }

@@ -52,15 +52,21 @@
         <script type="text/javascript" >
 
             $(document).ready(function(){
-               
-                $("#produtos").on("click",".js-delete",function(){
-                    bootbox.confirm("eu nao acredito nisso",function(){
-
-                    });
-
-                });
-            });
-
+                            $("#produtos").on("click",".js-delete", function(){
+                                let button = $(this);
+                                bootbox.confirm("Você confirma a exclusão do registro?", function(result){
+                                    if(result){
+                                        $.ajax({
+                                            url : "/produto/delete/" + button.attr("data-id"),
+                                            method : "GET",
+                                            success : function(){
+                                                window.location.href = "/produto/";
+                                            }
+                                        });
+                                    }
+                                });
+                            });
+                        });
         </script>
 
     </body>
