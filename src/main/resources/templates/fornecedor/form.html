@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+    <head th:include="layout :: htmlhead"></head>
+    
+    <body>
+        <div class="container">
+			<nav th:replace="layout :: menu">(menu)</nav>
+
+            <form th:action="@{/fornecedor/(form)}" th:object="${fornecedor}" method="POST">
+                
+                <input type="hidden"th:field="*{id}">
+           
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="txtnome">Nome:</label>
+                            <input type="text" th:field="*{nome}"  class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="txturlAPI">urlAPI:</label>
+                            <input type="text" th:field="*{urlAPI}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="txturlAPIAuth">urlAPIAuth:</label>
+                            <input type="text" th:field="*{urlAPIAuth}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="txtusuario">Usuario:</label>
+                            <input type="text" th:field="*{usuario}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="txtsenha">Senha:</label>
+                            <input type="text" th:field="*{senha}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit">Enviar</button>
+
+            </form>
+
+        </div>
+        <div th:include="layout :: footer" id="footer">(footer)</div>
+    </body>
+</html> 

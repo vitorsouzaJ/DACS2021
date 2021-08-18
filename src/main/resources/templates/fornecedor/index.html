@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+    <head th:include="layout :: htmlhead"></head>
+    
+    <body>
+        <div class="container">
+			<nav th:replace="layout :: menu">(menu)</nav>
+
+
+            <a th:href="@{/fornecedor/login}" class="btn btn-primary"> Login <a>
+
+            <table class="table" id="fornecedor">
+                <thead>
+                    <tr>
+                       
+                        <th>nome</th>
+                        <th>urlAPI</th>
+                        <th>urlAPIAuth</th>
+                        <th>usuario</th>
+                        <th>senha</th>
+                        
+                    </tr>
+
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr th:each=" umfornecedor : ${listaFornecedor}">
+                     
+                        <td th:text ="${umfornecedor.nome}"> </td>
+                        <td th:text ="${umfornecedor.urlAPI}"> </td>
+                        <td th:text ="${umfornecedor.urlAPIAuth}" > </td>
+                        <td th:text ="${umfornecedor.usuario}"> </td>
+                        <td th:text ="${umfornecedor.senha}"> </td>
+                      
+                        <td>
+
+                            <a th:href="@{'/fornecedor/alterar/'+${umfornecedor.id}}" class="btn btn-success">Alterar</a>
+                            <button class="btn btn-danger js-delete"
+                                    th:data-id="${umfornecedor.id}">Excluir</button>
+                        </td>
+
+                    </tr>
+                    
+                </tbody>     
+
+            </table>
+
+
+        </div>
+        <div th:include="layout :: footer" id="footer">(footer)</div>
+
+       
+
+    </body>
+</html> 
