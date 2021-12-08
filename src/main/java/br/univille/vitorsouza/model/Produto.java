@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Produto {
@@ -23,8 +23,9 @@ public class Produto {
     private String descricao;
     private float preco;
     @Temporal(value = TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataRegistro;
-    
+
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     private Categoria categoria;
 
@@ -40,11 +41,9 @@ public class Produto {
 
     public long getId() {
         return id;
-    }  
-
-    public void setId(long id) {
-        this.id = id;
     }
+
+
 
     public Date getDataRegistro() {
         return dataRegistro;
@@ -53,23 +52,29 @@ public class Produto {
     public void setDataRegistro(Date dataRegistro) {
         this.dataRegistro = dataRegistro;
     }
-   
+    public void setId(long id) {
+        this.id = id;
+    }
     public String getDescricao() {
         return descricao;
     }
+
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
+
     public float getPreco() {
         return preco;
     }
 
+
     public void setPreco(float preco) {
         this.preco = preco;
     }
-
-    
+       
+   
     
 }
+

@@ -52,7 +52,9 @@ public class ProdutoServiceImpl implements ProdutoService{
                 int responseCode = conn.getResponseCode();
                 
                 if(responseCode == 200){ //StatusCode 200 Sucesso!! Consegui chamar a API
+
                     Scanner leitor = new Scanner(endereco.openStream());
+                    
                     StringBuilder jsonText = new StringBuilder();
                     while(leitor.hasNext()){
                         jsonText.append(leitor.nextLine());
