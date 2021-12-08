@@ -10,24 +10,19 @@ import br.univille.vitorsouza.repository.FornecedorRepository;
 import br.univille.vitorsouza.service.FornecedorService;
 
 @Service
-public class FornecedorServiceImpl implements FornecedorService {
-
-
+public class FornecedorServiceImpl implements FornecedorService{
+    
     @Autowired
     private FornecedorRepository repository;
 
     @Override
-    public List<Fornecedor> getAllFornecedor() {
-
+    public List<Fornecedor> getAllFornecedores() {
         return repository.findAll();
     }
 
     @Override
-    public Fornecedor save(Fornecedor fornecedor) {
-        return repository.save(fornecedor);
+    public Fornecedor getFornecedor(long id) {
+        return repository.getById(id);
     }
-
-
-  
-
+    
 }

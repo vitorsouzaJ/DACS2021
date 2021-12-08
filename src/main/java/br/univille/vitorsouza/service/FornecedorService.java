@@ -10,5 +10,6 @@ import br.univille.vitorsouza.model.Fornecedor;
 public interface FornecedorService {
     public List<Fornecedor> getAllFornecedor();
     public Fornecedor save(Fornecedor fornecedor);
+    public void delete(Fornecedor fornecedor);
 
 }

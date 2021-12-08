@@ -1,7 +1,8 @@
 package br.univille.vitorsouza.controller;
 
-//import java.util.ArrayList;
-//import java.util.Date;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.univille.vitorsouza.model.Categoria;
 import br.univille.vitorsouza.model.Produto;
+import br.univille.vitorsouza.service.CategoriaService;
 import br.univille.vitorsouza.service.ProdutoService;
 
 @Controller
@@ -22,57 +25,65 @@ public class ProdutoController {
 
     @Autowired
     private ProdutoService service;
+    @Autowired
+    private CategoriaService categoriaService;
+    
+    /* 
+    Date aniversario = new Date();
+    Atributo - Variavel
+    public/private tipo nome;
+    Método - Função
+    public tipo nome (parametros) { corpo } */
 
     @GetMapping
     public ModelAndView index(){
-        /*
-        Produto prdo1 = new Produto();
-        prdo1.setDescricao("Produto legal 1");
-        prdo1.setDataRegistro(new Date());
-        prdo1.setPreco(2000);
+        /*Produto prod1 = new Produto();
+        prod1.setDescricao("Produto legal 1");
+        prod1.setDataRegistro(new Date());
+        prod1.setPreco(2000);
+        Produto prod2 = new Produto();
+        prod2.setDescricao("Produto legal 2");
+        prod2.setDataRegistro(new Date());
+        prod2.setPreco(5000);*/
 
-        Produto prdo2 = new Produto();
-        prdo2.setDescricao("Produto legal 2");
-        prdo2.setDataRegistro(new Date());
-        prdo2.setPreco(1538);
-*/
+        List<Produto> listaProdutos = service.getAllProdutos();
 
-        List<Produto> listaProduto = service.getAllProduto();
+        /*listaProdutos.add(prod1);
+        listaProdutos.add(prod2);*/
 
-        /*
-        listaProduto.add(prdo1);
-        listaProduto.add(prdo2);
-        */
-        return new  ModelAndView("produto/index","listaProdutos", listaProduto);
+        return new ModelAndView("produto/index","listaProdutos",listaProdutos);
+    }
+    @GetMapping("/novo")
+    public ModelAndView novo(@ModelAttribute Produto produto){
+        HashMap<String,Object> dados = new HashMap<>();
 
-          }
+        dados.put("produto",produto);
+        List<Categoria> listaCategorias = categoriaService.getAllCategorias();
+        dados.put("listaCategorias",listaCategorias);
+        return new ModelAndView("produto/form",dados);
+    }
 
-          @GetMapping("/novo")
-          public ModelAndView novo(@ModelAttribute Produto produto){
-              return new ModelAndView("produto/form");
-          }
+    @PostMapping(params = "form")
+    public ModelAndView save(Produto produto){
+        service.save(produto);
+        return new ModelAndView("redirect:/produto");
+    }
 
-          @PostMapping(params = "form")
-          public ModelAndView save(Produto produto){
-              service.save(produto);
-              return new ModelAndView("redirect:/produto");
-              
-          }
+    @GetMapping(value = "/alterar/{id}")
+    public ModelAndView alterar(@PathVariable("id") Produto produto){
 
-          @GetMapping(value = "/alterar/{id}")
-          public ModelAndView alterar(@PathVariable("id") Produto produto){
+        HashMap<String,Object> dados = new HashMap<>();
+        dados.put("produto",produto);
+        List<Categoria> listaCategorias = categoriaService.getAllCategorias();
+        dados.put("listaCategorias",listaCategorias);
 
-              return new ModelAndView("produto/form", "produto", produto);
+        return new ModelAndView("produto/form",dados);
+    }
 
-          }
+    @GetMapping(value = "/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Produto produto){
+        service.delete(produto);
+        return new ModelAndView("redirect:/produto");
+    }
 
-          @GetMapping(value = "/delete/{id}")
-          public ModelAndView delete(@PathVariable("id") Produto produto){
-              service.delete(produto);
-              return new ModelAndView("redirect:/produto");
-          }
-      
-
-          
-  
 }
