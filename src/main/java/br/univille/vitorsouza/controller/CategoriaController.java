@@ -1,5 +1,6 @@
 package br.univille.vitorsouza.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import br.univille.vitorsouza.service.CategoriaService;
 @RequestMapping("/categoria")
 public class CategoriaController {
     @Autowired
-    private CategoriaServiceImpl service;
+    private CategoriaService service;
 
     @GetMapping
     public ModelAndView index(){

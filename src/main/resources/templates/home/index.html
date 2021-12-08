@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     
-    <head th:include="layout :: htmlhead"></head>
+    <head th:replace="layout :: htmlhead"></head>
     
     <body>
         <div class="container">
@@ -11,11 +11,9 @@
             <h1 th:text="${nomeapp}">Minha aplicação!!!</h1>
             <h3 th:text="${tempo}"></h3>
 
-            <button class = "btn btn-success" >Butãozinho </button>
-
-            <a href= "https://www.univille.br" class = "btn btn-success"> NAO ME CLICA</a>
+            <button class="btn btn-primary">Meu botão bonito</button>
 
         </div>
-        <div th:include="layout :: footer" id="footer">(footer)</div>
+        <div th:replace="layout :: footer" id="footer">(footer)</div>
     </body>
 </html> 

@@ -1,80 +1,56 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org"
+
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    
+
     <head th:include="layout :: htmlhead"></head>
+
     
     <body>
+
         <div class="container">
-			<nav th:replace="layout :: menu">(menu)</nav>
-
-
-            <a th:href="@{/fornecedor/login}" class="btn btn-primary"> Login <a>
+            <nav th:replace="layout :: menu">(menu)</nav>
+            <a th:href="@{/fornecedor/novo}" class="btn btn-primary">  Novo  </a>
 
             <table class="table" id="fornecedor">
+
                 <thead>
                     <tr>
-                       
-                        <th>nome</th>
-                        <th>urlAPI</th>
-                        <th>urlAPIAuth</th>
-                        <th>usuario</th>
-                        <th>senha</th>
-                        
+
+                        <th>Nome do Fornecedor</th>
+                        <th>Url API</th>
+                        <th>Url API Auth</th>
+                        <th>Usuário</th>
+                        <th>Senha</th>
+                        <th></th>
+
                     </tr>
-
-
                 </thead>
-
 
                 <tbody>
 
-                    <tr th:each=" umfornecedor : ${listaFornecedor}">
-                     
-                        <td th:text ="${umfornecedor.nome}"> </td>
-                        <td th:text ="${umfornecedor.urlAPI}"> </td>
-                        <td th:text ="${umfornecedor.urlAPIAuth}" > </td>
-                        <td th:text ="${umfornecedor.usuario}"> </td>
-                        <td th:text ="${umfornecedor.senha}"> </td>
-                      
+                    <tr th:each="umfornecedor : ${listaFornecedores}">
+                        <td th:text="${umfornecedor.nome}"></td>
+                        <td th:text="${umfornecedor.urlAPI}"></td>
+                        <td th:text="${umfornecedor.urlAPIAuth}"></td>
+                        <td th:text="${umfornecedor.usuario}"></td>
+                        <td th:text="${umfornecedor.senha}"></td>
                         <td>
-
-                            <a th:href="@{'/fornecedor/alterar/'+${umfornecedor.id}}" class="btn btn-success">Alterar</a>
+                            <a th:href="@{'/fornecedor/alterar/'+${umfornecedor.id}}" class="btn btn-primary">Alterar</a>
                             <button class="btn btn-danger js-delete"
-                                    th:data-id="${umfornecedor.id}">Excluir</button>
+                            th:data-id="${umfornecedor.id}">Excluir</button>
                         </td>
-
                     </tr>
-                    
-                </tbody>     
 
-            </table>
+                </tbody>
 
+            </table>    
 
         </div>
+
         <div th:include="layout :: footer" id="footer">(footer)</div>
 
-       
-        <script type="text/javascript" >
-
-            $(document).ready(function(){
-                            $("#fornecedor").on("click",".js-delete", function(){
-                                let button = $(this);
-                                bootbox.confirm("Você confirma a exclusão do registro?", function(result){
-                                    if(result){
-                                        $.ajax({
-                                            url : "/fornecedor/delete/" + button.attr("data-id"),
-                                            method : "GET",
-                                            success : function(){
-                                                window.location.href = "/fornecedor/";
-                                            }
-                                        });
-                                    }
-                                });
-                            });
-                        });
-        </script>
-
     </body>
-</html> 
 
+</html> 
